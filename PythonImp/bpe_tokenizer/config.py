@@ -1,0 +1,2 @@
+
+NUM_MERGES = 100  
