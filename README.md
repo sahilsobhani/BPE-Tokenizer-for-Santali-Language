@@ -1,59 +1,68 @@
-# BPE Tokenizer for Santali Language
+# Byte Pair Encoding (BPE) Tokenizer for Santali Language
 
-This repository contains an implementation of a Byte Pair Encoding (BPE) tokenizer for the Santali language in both Python and C++. The tokenizer learns subword merges from a training corpus and applies them to segment new text efficiently.
+## Overview
+This repository contains an implementation of a Byte Pair Encoding (BPE) tokenizer specifically designed for the Santali language. The tokenizer is implemented in both Python and C++.
 
-## Features
-
-- Tokenizes Santali text using BPE.
-- Learns subword merges from a training corpus.
-- Implemented in **Python** for prototyping and **C++** for efficiency.
-- Supports saving and loading trained vocabulary.
+## Project Structure
+```
+├── Data/
+│   ├── data.txt  # Corpus used for training
+├── PythonImp/
+│   ├── bpe_tokenizer/
+│   │   ├── __init__.py
+│   │   ├── tokenizer.py
+│   │   ├── utils.py
+│   │   ├── config.py
+│   ├── train.py  # Script to train and test the tokenizer
+├── CppImp/
+│   ├── src/
+│   │   ├── tokenizer.cpp
+│   │   ├── utils.cpp
+│   ├── include/
+│   │   ├── tokenizer.h
+│   │   ├── utils.h
+│   ├── CMakeLists.txt  # Build configuration for C++ implementation
+├── README.md  # Project documentation
+```
 
 ## Installation
+### Python Implementation
+1. Clone the repository:
+   ```sh
+   git clone <repo-url>
+   cd <repo-folder>/PythonImp
+   ```
 
-### Python Version
-
-Ensure you have Python 3 installed, then clone the repository and install dependencies:
-
-```bash
-pip install -r requirements.txt  # If dependencies are required
-```
-
-### C++ Version
-
-Ensure you have a C++ compiler (GCC or Clang). Compile with:
-
-```bash
-g++ -o bpe_tokenizer bpe_tokenizer.cpp
-```
+### C++ Implementation
+1. Navigate to the C++ directory:
+   ```sh
+   cd <repo-folder>/CppImp
+   ```
+2. Compile the project:
+   ```sh
+   mkdir build && cd build
+   cmake .. && make
+   ```
 
 ## Usage
-
 ### Python
-
-```python
-from bpe_tokenizer import BPETokenizer
-
-corpus = "ᱥᱟᱱᱛᱟᱞᱤ ᱡᱷᱤᱡᱤ ᱵᱚᱨᱚ ᱯᱷᱚᱦᱚ"
-tokenizer = BPETokenizer(num_merges=10)
-tokenizer.train(corpus)
-print("Tokenized text:", tokenizer.tokenize("ᱥᱟᱱᱛᱟᱞᱤ ᱵᱚᱨᱚ"))
+Train and test the tokenizer using:
+```sh
+python train.py
 ```
 
 ### C++
-
-Compile and run:
-
-```bash
-./bpe_tokenizer input.txt
+Run the compiled tokenizer:
+```sh
+./bpe_tokenizer
 ```
 
-## Future Improvements
-
-- Optimize C++ version for large-scale processing.
-- Implement GPU acceleration using CUDA.
-- Extend to other low-resource languages.
+## Features
+- Supports UTF-8 encoding
+- Handles Santali script (Ol Chiki)
+- Byte Pair Encoding (BPE) training and tokenization
+- Implemented in both Python and C++ for performance optimization
 
 ## License
+This project is licensed under the MIT License.
 
-This project is open-source under the MIT License.

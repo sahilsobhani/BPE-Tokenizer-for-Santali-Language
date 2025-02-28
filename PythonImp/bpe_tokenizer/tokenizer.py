@@ -34,7 +34,10 @@ class BPETokenizer:
             else:
                 return b''.join(flatten(x) for x in t)
 
-        return [flatten(t) for t in tokens]
+        utf8_tokens = [flatten(t).decode("utf-8", errors="ignore") for t in tokens]
+        numerical_tokens = [[byte for byte in flatten(t)] for t in tokens]
+
+        return utf8_tokens, numerical_tokens
 
     def _get_word_frequencies(self, words):
         freqs = defaultdict(int)

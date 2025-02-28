@@ -10,7 +10,7 @@ tokenizer.train(corpus)
 
 # Example tokenization
 sample_text = "ᱥᱟᱱᱛᱟᱞᱤ ᱵᱚᱨᱚ"
-utf8_tokens = tokenizer.tokenize(sample_text)
+utf8_tokens, numerical_tokens = tokenizer.tokenize(sample_text)
 
 print("UTF-8 Tokens:", utf8_tokens)
-
+print("Numerical Tokens:", numerical_tokens)
