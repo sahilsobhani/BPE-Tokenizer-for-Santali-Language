@@ -39,6 +39,33 @@ class BPETokenizer:
 
         return utf8_tokens, numerical_tokens
 
+    def decode(self, numerical_tokens):
+        """
+        Decodes a list of tokenized byte values back into the original text.
+        """
+        # Convert numerical tokens to bytes
+        tokens = [bytes(t) for t in numerical_tokens]
+
+        # Apply merges in reverse order
+        for merge in reversed(self.merges):
+            tokens = self._reverse_merge(tokens, merge)
+
+        # Flatten the tokens into a single byte sequence
+        decoded_bytes = b''.join(tokens)
+
+        # Convert bytes back to a UTF-8 string
+        return decoded_bytes.decode("utf-8", errors="ignore")
+    def _reverse_merge(self, tokens, merge):
+   
+        new_tokens = []
+        for token in tokens:
+            if token == merge:
+                new_tokens.extend(merge)  # Split the tuple back
+            else:
+                new_tokens.append(token)
+        return new_tokens
+
+
     def _get_word_frequencies(self, words):
         freqs = defaultdict(int)
         for word in words:
